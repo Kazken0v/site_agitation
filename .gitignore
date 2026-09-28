@@ -1,0 +1,5 @@
+node_modules/
+test/screenshots/
+.DS_Store
+*.log
+backend/winners.json

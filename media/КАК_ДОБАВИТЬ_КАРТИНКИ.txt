@@ -1,0 +1,6 @@
+Сюда клади свои картинки для улик.
+Пример: перо.jpg, часы.jpg, карта.jpg
+Потом укажи путь в questions.js: "clue_media": "media/перо.jpg"
+и в backend/questions.json так же.
+
+Бесплатно: pixabay.com / unsplash.com (запрос "noir detective rain").

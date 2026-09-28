@@ -1,0 +1,16 @@
+{
+  "name": "site_agitation",
+  "version": "1.0.0",
+  "description": "Мрачный интерактив в духе Gravity Falls `This Is Not A Website Dot Com`: чёрный экран с паролем → ночной кабинет (стол, лампа, окно с дождём на canvas, молнии) → CRT-терминал кодов → всплывающие улики → главный пароль → победа + книга имён.",
+  "main": "questions.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "playwright": "^1.63.0",
+    "playwright-core": "^1.63.0"
+  }
+}

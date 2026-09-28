@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>△ ЭТО НЕ САЙТ</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👁</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ ЭКРАН 0: ВХОД ============ -->
+<div id="intro">
+  <svg class="intro-pyramid" viewBox="0 0 200 170" aria-hidden="true">
+    <polygon points="100,12 184,150 16,150" fill="none" stroke="#e8e2d0" stroke-width="3"/>
+    <polygon points="100,12 138,150 62,150" fill="none" stroke="#e8e2d0" stroke-width="1.5" opacity=".7"/>
+    <line x1="100" y1="12" x2="100" y2="150" stroke="#e8e2d0" stroke-width="1.5" opacity=".7"/>
+    <ellipse cx="100" cy="150" rx="84" ry="10" fill="none" stroke="#e8e2d0" stroke-width="1.5" opacity=".7"/>
+  </svg>
+  <h1>ЭТО НЕ САЙТ</h1>
+  <p class="sub">частное сыскное бюро &laquo;Мокрое стекло&raquo; — ночь, дождь, одно нераскрытое дело</p>
+  <div class="entry-box">
+    <input id="entry-pass" type="text" placeholder="пароль…" autocomplete="off">
+    <button id="entry-btn">ВОЙТИ</button>
+  </div>
+  <p id="entry-err" class="err hidden">✕ неверно</p>
+  <p class="tiny-hint">подсказка для своих: пароль — <b>дождь</b> (поменяй в questions.js → entryPassword)</p>
+</div>
+
+<!-- ============ ЭКРАН 1: ФОТОРЕАЛИСТИЧНЫЙ СТОЛ ============ -->
+<div id="office" class="hidden">
+
+  <!-- стена: текстура, граффити, паутина, окно -->
+  <div class="wall">
+    <svg class="graffiti" viewBox="0 0 120 160" aria-hidden="true">
+      <g fill="none" stroke="#6e1423" stroke-width="7" opacity=".55" stroke-linecap="round">
+        <circle cx="60" cy="80" r="44"/>
+        <line x1="60" y1="18" x2="60" y2="142"/>
+        <line x1="22" y1="52" x2="98" y2="108"/>
+        <line x1="98" y1="52" x2="22" y2="108"/>
+      </g>
+    </svg>
+    <svg class="cobweb" viewBox="0 0 120 120" aria-hidden="true">
+      <g fill="none" stroke="#c9c9c9" stroke-width="1" opacity=".4">
+        <line x1="120" y1="0" x2="40" y2="120"/><line x1="120" y1="0" x2="0" y2="70"/><line x1="120" y1="0" x2="75" y2="120"/>
+        <path d="M105,15 Q90,30 70,32 Q50,34 38,48"/>
+        <path d="M92,38 Q75,50 55,52 Q40,54 30,62"/>
+        <path d="M78,60 Q65,68 50,70"/>
+      </g>
+    </svg>
+    <div class="window-frame">
+      <canvas id="rain"></canvas>
+      <div class="lattice"></div>
+      <div class="glass"></div>
+      <div id="flash"></div>
+    </div>
+    <div class="sill"></div>
+    <p class="clock">🕰 <span id="clock">02:47</span> — дождь идёт третьи сутки</p>
+  </div>
+
+  <!-- стол -->
+  <div class="desk">
+    <div class="light-cool"></div>
+    <div class="light-warm"></div>
+    <div class="godrays"></div>
+    <div class="dust"></div>
+
+    <!-- призма -->
+    <div class="prism" title="странная призма"></div>
+
+    <!-- склянка -->
+    <div class="bottle" title="склянка"><div class="liquid"></div><div class="cork"></div></div>
+
+    <!-- CRT монитор -->
+    <div class="monitor">
+      <div class="mon-top"><span>McGUCKET&nbsp;LABS</span><i></i><i></i></div>
+      <div class="crt">
+        <svg class="pyramid" viewBox="0 0 200 150" aria-hidden="true">
+          <polygon class="pl" points="100,10 178,128 22,128" fill="none" stroke="#ffe9a3" stroke-width="2.5"/>
+          <polygon class="pl" points="100,10 136,128 64,128" fill="none" stroke="#ffe9a3" stroke-width="1.2" opacity=".8"/>
+          <line class="pl" x1="100" y1="10" x2="100" y2="128" stroke="#ffe9a3" stroke-width="1.2" opacity=".8"/>
+          <ellipse class="pl" cx="100" cy="128" rx="78" ry="9" fill="none" stroke="#ffe9a3" stroke-width="1.2" opacity=".8"/>
+        </svg>
+        <div id="term-output"></div>
+        <div class="scan"></div>
+        <div class="curveglare"></div>
+      </div>
+      <div class="deck">
+        <form id="term-form" autocomplete="off">
+          <span class="prompt">&gt;</span>
+          <input id="term-input" type="text" placeholder="введи кодовое слово…" autocomplete="off">
+          <button type="submit">⏎</button>
+        </form>
+        <div class="deck-row">
+          <div class="progress">УЛИК: <span id="found-count">0</span>/<span id="total-count">5</span> <span class="bar"><span id="bar-fill"></span></span></div>
+          <div class="knobs"><span class="knob"></span><span class="knob small"></span><span class="redbtn" id="red-btn" title="не нажимать"></span></div>
+        </div>
+      </div>
+      <div class="mon-base"></div>
+    </div>
+
+    <!-- череп -->
+    <svg class="skull" viewBox="0 0 160 190" aria-hidden="true">
+      <defs>
+        <radialGradient id="bone" cx="38%" cy="30%" r="80%">
+          <stop offset="0%" stop-color="#ddd2b4"/><stop offset="55%" stop-color="#a99e80"/><stop offset="100%" stop-color="#57503e"/>
+        </radialGradient>
+      </defs>
+      <path d="M80,8 C130,8 150,50 148,95 C147,115 140,128 132,138 L132,168 C132,178 124,184 80,184 C36,184 28,178 28,168 L28,138 C20,128 13,115 12,95 C10,50 30,8 80,8 Z" fill="url(#bone)"/>
+      <ellipse cx="53" cy="108" rx="22" ry="26" fill="#060606"/>
+      <ellipse cx="107" cy="108" rx="22" ry="26" fill="#060606"/>
+      <ellipse cx="53" cy="104" rx="7" ry="5" fill="#1d2b3a" opacity=".8"/>
+      <ellipse cx="107" cy="104" rx="7" ry="5" fill="#1d2b3a" opacity=".8"/>
+      <path d="M80,128 L70,150 L90,150 Z" fill="#060606"/>
+      <g stroke="#3a342a" stroke-width="2">
+        <line x1="48" y1="168" x2="48" y2="184"/><line x1="62" y1="170" x2="62" y2="184"/>
+        <line x1="76" y1="170" x2="76" y2="184"/><line x1="90" y1="170" x2="90" y2="184"/>
+        <line x1="104" y1="168" x2="104" y2="184"/>
+      </g>
+      <path d="M40,40 L66,58 M118,34 L100,60" stroke="#2e2a22" stroke-width="2" opacity=".7"/>
+    </svg>
+
+    <!-- книги + меч -->
+    <div class="bookstack">
+      <svg class="sword" viewBox="0 0 60 220" aria-hidden="true">
+        <defs><linearGradient id="steel" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#3c4a5a"/><stop offset="45%" stop-color="#c7d5e2"/><stop offset="55%" stop-color="#8fa0b3"/><stop offset="100%" stop-color="#2c3540"/>
+        </linearGradient></defs>
+        <circle cx="30" cy="12" r="9" fill="#3a2c14" stroke="#c9a227" stroke-width="2"/>
+        <rect x="22" y="20" width="16" height="34" rx="4" fill="#1c1410"/>
+        <g stroke="#0d0d0d" stroke-width="1.5"><line x1="22" y1="26" x2="38" y2="30"/><line x1="22" y1="34" x2="38" y2="38"/><line x1="22" y1="42" x2="38" y2="46"/></g>
+        <rect x="6" y="54" width="48" height="10" rx="5" fill="#4a3a1c" stroke="#c9a227" stroke-width="1.5"/>
+        <polygon points="14,64 46,64 38,200 30,214 22,200" fill="url(#steel)"/>
+        <line x1="30" y1="70" x2="30" y2="195" stroke="#e8eef4" stroke-width="1.5" opacity=".7"/>
+      </svg>
+      <div class="book b1"><span>ДЕЛО № 47</span></div>
+      <div class="book b2"></div>
+      <div class="book b3"></div>
+      <div class="loose-paper p1"></div>
+      <div class="loose-paper p2"></div>
+    </div>
+
+    <!-- свеча -->
+    <div class="candle" title="свеча">
+      <div class="flame-halo"></div>
+      <div class="flame"><div class="core"></div></div>
+      <div class="wick"></div>
+      <div class="wax"></div>
+      <div class="saucer"></div>
+    </div>
+
+    <!-- финальный пароль -->
+    <div id="final-panel" class="hidden">
+      <p>🔦 Все улики собраны. Введи <b>ГЛАВНЫЙ ПАРОЛЬ</b> дела:</p>
+      <p class="hint-line" id="final-hint"></p>
+      <form id="final-form" autocomplete="off">
+        <input id="final-input" type="text" placeholder="ГЛАВНЫЙ ПАРОЛЬ…" autocomplete="off">
+        <button type="submit">РАСКРЫТЬ ДЕЛО</button>
+      </form>
+      <p id="final-err" class="err hidden">✕ не тот пароль</p>
+    </div>
+  </div>
+
+  <!-- доска улик -->
+  <aside class="board">
+    <h3>📌 ДОСКА УЛИК</h3>
+    <ul id="clue-list"><li class="empty">пока пусто… вводи коды в терминал</li></ul>
+    <div class="board-btns">
+      <button id="mute-btn" title="звук">🔊</button>
+      <button id="reset-btn" title="начать заново">↺</button>
+      <button id="help-btn" title="подсказки">?</button>
+    </div>
+    <div id="help-box" class="hidden"></div>
+  </aside>
+</div>
+
+<!-- ============ ПОПАП УЛИКИ ============ -->
+<div id="modal" class="hidden">
+  <div class="card">
+    <div class="stamp">УЛИКА <span id="m-num"></span></div>
+    <h2 id="m-title"></h2>
+    <div id="m-media"></div>
+    <p id="m-text"></p>
+    <p id="m-piece" class="piece"></p>
+    <button id="m-close">Подшить к делу</button>
+  </div>
+</div>
+
+<!-- ============ ФИНАЛ ============ -->
+<div id="win-modal" class="hidden">
+  <div class="card win">
+    <h2>🎉 ДЕЛО РАСКРЫТО 🎉</h2>
+    <p class="typewriter" id="win-text">Печатная машинка стучит… Имя убийцы названо верно. Дождь за окном стихает.</p>
+    <form id="win-form" autocomplete="off">
+      <label>Впиши своё имя в книгу победителей:</label>
+      <input id="win-name" type="text" maxlength="30" placeholder="Твоё имя…" autocomplete="off">
+      <button type="submit">ЗАПИСАТЬ</button>
+    </form>
+    <h3>📖 Книга победителей</h3>
+    <ol id="winners-list"><li>пока никого…</li></ol>
+    <button id="win-close">Вернуться в кабинет</button>
+  </div>
+</div>
+
+<script src="questions.js"></script>
+<script src="sound.js"></script>
+<script src="rain.js"></script>
+<script src="terminal.js"></script>
+<script>
+document.getElementById('red-btn').addEventListener('click', () => {
+  const f = document.getElementById('flash');
+  if (window.NoirSound) window.NoirSound.unlock();
+  if (f) {
+    f.style.transition = 'none'; f.style.opacity = '0.7';
+    setTimeout(() => { f.style.transition = 'opacity 1.4s'; f.style.opacity = '0'; }, 120);
+  }
+  if (window.NoirSound) window.NoirSound.thunder();
+});
+</script>
+</body>
+</html>
